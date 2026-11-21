@@ -140,6 +140,24 @@ Notificação enviada pelo SNS quando o alarme voltou para OK.
 
 Teste feito a partir da EC2 (ID da conta e nome do bucket substituídos): a role funciona, grava em `logs/` e recebe `AccessDenied` em qualquer outra pasta.
 
+### Usuário de leitura com MFA (Lab-leitura)
+
+![Usuário Lab-leitura com MFA](docs/img/lab-leitura-mfa.png)
+
+Usuário `Lab-leitura`, em um grupo com a política `ReadOnlyAccess`, com acesso ao console "Habilitado com MFA" e um dispositivo virtual atribuído (ID da conta coberto).
+
+### Lab-leitura: iniciar a EC2 é negado
+
+![Lab-leitura tentando iniciar a EC2](docs/img/lab-leitura-ec2-negado.png)
+
+O usuário enxerga a instância, mas a ação `ec2:StartInstances` é negada por falta de política que a permita.
+
+### Lab-leitura: criar bucket no S3 é negado
+
+![Lab-leitura tentando criar um bucket](docs/img/lab-leitura-s3-negado.png)
+
+A criação do bucket falha porque a permissão `s3:CreateBucket` é necessária. O acesso de leitura não altera nada.
+
 ## Incidente simulado
 
 Para validar o fluxo completo, gerei carga na CPU da EC2 com `stress-ng --cpu 2 --timeout 900s` (duas vCPUs a 100% por 15 minutos).
