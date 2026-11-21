@@ -1,0 +1,11 @@
+# Chaves e credenciais: nunca versionar
+*.pem
+*.env
+.env
+*.key
+
+# Arquivos locais
+.DS_Store
+Thumbs.db
+__pycache__/
+*.pyc
